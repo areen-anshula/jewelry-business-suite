@@ -26,9 +26,9 @@ class UserManager(BaseUserManager):
 
 class User(AbstractUser):
     class Role(models.TextChoices):
-        CUSTOMER = "CUSTOMER", "customer",
-        STAFF = "STAFF", "staff",
-        OWNER = "OWNER", "owner",
+        CUSTOMER = "CUSTOMER", "customer"
+        STAFF = "STAFF", "staff"
+        OWNER = "OWNER", "owner"
     username = None
     email =  models.EmailField(unique=True)
     role = models.CharField(
@@ -44,3 +44,32 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
+
+class Customer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    phone_number = models.CharField(max_length=15) 
+    notes = models.TextField(blank=True) 
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)   
+    
+    def __str__(self):
+        return self.phone_number
+
+
+
+class Address(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    label = models.CharField(max_length=200)
+    recipient_name = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=15)
+    address_line1 = models.CharField(max_length=100)
+    address_line2 = models.CharField(max_length=100, blank=True)
+    city = models.CharField(max_length=100)
+    district = models.CharField(max_length=100)
+    postal_code = models.CharField(max_length=50)
+    is_default = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return (f"{self.recipient_name} {self.label}")
