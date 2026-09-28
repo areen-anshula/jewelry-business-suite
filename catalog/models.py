@@ -1,5 +1,6 @@
 from django.db import models
 from customers.models import Customer
+import uuid
 
 
 class Product(models.Model):
@@ -14,7 +15,7 @@ class Product(models.Model):
     class Status(models.TextChoices):
         ACTIVE = "ACTIVE", "Active"
         INACTIVE = "INACTIVE", "Inactive"
-
+    id = models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
     name = models.CharField(max_length=100)
     category = models.CharField(max_length=20, choices=Category.choices)
     description = models.TextField(blank=True)
@@ -26,13 +27,12 @@ class Product(models.Model):
 
 
 class ProductImage(models.Model):
-
     class ImageType(models.TextChoices):
         FRONT = "FRONT", "Front view"
         SIDE = "SIDE", "Side view"
         WORN = "WORN", "Worn view"
         CLOSE_UP = "CLOSE_UP", "Close-up"
-
+    id = models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="images")
     image = models.ImageField(upload_to="products/")
     image_type = models.CharField(max_length=20,choices=ImageType.choices)
@@ -42,7 +42,7 @@ class ProductImage(models.Model):
 
 
 class Stock(models.Model):
-
+    id = models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
     product = models.OneToOneField(Product, on_delete=models.CASCADE, related_name="stock")
     stock_quantity = models.PositiveIntegerField(default=0)
 
@@ -51,12 +51,11 @@ class Stock(models.Model):
 
 
 class CustomizationRequest(models.Model):
-
     class Status(models.TextChoices):
         PENDING = "PENDING", "Pending"
         APPROVED = "APPROVED", "Approved"
         REJECTED = "REJECTED", "Rejected"
-
+    id = models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
     customer = models.ForeignKey(Customer,on_delete=models.CASCADE, related_name="customization_requests")
     product = models.ForeignKey(Product,on_delete=models.CASCADE, related_name="customization_requests")
     request = models.TextField()

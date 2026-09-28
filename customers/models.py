@@ -1,7 +1,7 @@
-import uuid
 from django.core.validators import RegexValidator
 from django.db import models
 from accounts.models import User
+import uuid
 
 phone_validator = RegexValidator(
     regex=r"^\+?[0-9]{9,15}$",
@@ -10,7 +10,7 @@ phone_validator = RegexValidator(
 
 
 class Country(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
     name = models.CharField(max_length=100, unique=True)
     iso_code = models.CharField(max_length=3, unique=True, help_text="ISO 3166-1 alpha-2/3 code, e.g. LK")
 
@@ -23,7 +23,7 @@ class Country(models.Model):
 
 
 class Customer(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="customer_profile")
 
     phone_number = models.CharField(max_length=15, validators=[phone_validator])
@@ -42,8 +42,8 @@ class Customer(models.Model):
 
 
 class Address(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="addresses")
+    id = models.UUIDField(primary_key=True,default=uuid.uuid4,editable=False)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="addresses_of_customer")
     country = models.ForeignKey(Country, on_delete=models.PROTECT, related_name="addresses")
 
     label = models.CharField(max_length=50)  
