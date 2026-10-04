@@ -1,0 +1,21 @@
+SystemCheckError: System check identified some issues:
+
+ERRORS:
+delivery.Order.shipping_address: (fields.E304) Reverse accessor 'Address.orders' for 'delivery.Order.shipping_address' clashes with reverse accessor for 'orders.Order.shipping_address'.
+	HINT: Add or change a related_name argument to the definition for 'delivery.Order.shipping_address' or 'orders.Order.shipping_address'.
+delivery.Order.shipping_address: (fields.E305) Reverse query name for 'delivery.Order.shipping_address' clashes with reverse query name for 'orders.Order.shipping_address'.
+	HINT: Add or change a related_name argument to the definition for 'delivery.Order.shipping_address' or 'orders.Order.shipping_address'.
+delivery.OrderItem.product: (fields.E304) Reverse accessor 'Product.order_items' for 'delivery.OrderItem.product' clashes with reverse accessor for 'orders.OrderItem.product'.
+	HINT: Add or change a related_name argument to the definition for 'delivery.OrderItem.product' or 'orders.OrderItem.product'.
+delivery.OrderItem.product: (fields.E305) Reverse query name for 'delivery.OrderItem.product' clashes with reverse query name for 'orders.OrderItem.product'.
+	HINT: Add or change a related_name argument to the definition for 'delivery.OrderItem.product' or 'orders.OrderItem.product'.
+orders.Order.shipping_address: (fields.E304) Reverse accessor 'Address.orders' for 'orders.Order.shipping_address' clashes with reverse accessor for 'delivery.Order.shipping_address'.
+	HINT: Add or change a related_name argument to the definition for 'orders.Order.shipping_address' or 'delivery.Order.shipping_address'.
+orders.Order.shipping_address: (fields.E305) Reverse query name for 'orders.Order.shipping_address' clashes with reverse query name for 'delivery.Order.shipping_address'.
+	HINT: Add or change a related_name argument to the definition for 'orders.Order.shipping_address' or 'delivery.Order.shipping_address'.
+orders.OrderItem.product: (fields.E304) Reverse accessor 'Product.order_items' for 'orders.OrderItem.product' clashes with reverse accessor for 'delivery.OrderItem.product'.
+	HINT: Add or change a related_name argument to the definition for 'orders.OrderItem.product' or 'delivery.OrderItem.product'.
+orders.OrderItem.product: (fields.E305) Reverse query name for 'orders.OrderItem.product' clashes with reverse query name for 'delivery.OrderItem.product'.
+	HINT: Add or change a related_name argument to the definition for 'orders.OrderItem.product' or 'delivery.OrderItem.product'.
+
+System check identified 8 issues (0 silenced).
