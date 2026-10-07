@@ -29,7 +29,7 @@ def create_order(request):
     
     return HttpResponse(f"Created order: {order.id}")
 
-@login_required
+#@login_required
 @require_POST
 def confirm_order(request, order_id):
     try:

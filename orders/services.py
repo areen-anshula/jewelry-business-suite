@@ -45,7 +45,7 @@ class OrderService:
             product_stock.stock_quantity = new_stock
             product_stock.save()
 
-        return order  
+        return order   
 
     @staticmethod
     def confirm_order(order_id):
